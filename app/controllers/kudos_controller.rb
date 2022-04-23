@@ -1,5 +1,7 @@
 class KudosController < ApplicationController
   before_action :set_kudo, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_employee!
+  before_action :correct_employee, only: %i[ edit update destroy ]
 
   # GET /kudos
   def index
@@ -22,13 +24,20 @@ class KudosController < ApplicationController
   # POST /kudos
   def create
     @kudo = Kudo.new(kudo_params)
-    @kudo.giver_id = current_employee.id
 
     if @kudo.save
       redirect_to kudos_path, notice: 'Kudo was successfully created.'
     else
       render :new
     end
+  end
+
+  def correct_employee
+   if 
+    @kudo.giver == current_employee
+   else
+    redirect_to kudos_path, notice: "Not authorized to acces this Kudo."
+   end
   end
 
   # PATCH/PUT /kudos/1
