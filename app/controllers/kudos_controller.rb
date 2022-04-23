@@ -22,9 +22,10 @@ class KudosController < ApplicationController
   # POST /kudos
   def create
     @kudo = Kudo.new(kudo_params)
+    @kudo.giver_id = current_employee.id
 
     if @kudo.save
-      redirect_to @kudo, notice: 'Kudo was successfully created.'
+      redirect_to kudos_path, notice: 'Kudo was successfully created.'
     else
       render :new
     end
@@ -33,7 +34,7 @@ class KudosController < ApplicationController
   # PATCH/PUT /kudos/1
   def update
     if @kudo.update(kudo_params)
-      redirect_to @kudo, notice: 'Kudo was successfully updated.'
+      redirect_to kudos_path, notice: 'Kudo was successfully updated.'
     else
       render :edit
     end
