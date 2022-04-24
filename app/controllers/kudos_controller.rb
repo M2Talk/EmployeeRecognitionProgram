@@ -1,7 +1,7 @@
 class KudosController < ApplicationController
-  before_action :set_kudo, only: [:show, :edit, :update, :destroy]
+  before_action :set_kudo, only: %i[show edit update destroy]
   before_action :authenticate_employee!
-  before_action :correct_employee, only: %i[ edit update destroy ]
+  before_action :correct_employee, only: %i[edit update destroy]
 
   # GET /kudos
   def index
@@ -9,8 +9,7 @@ class KudosController < ApplicationController
   end
 
   # GET /kudos/1
-  def show
-  end
+  def show; end
 
   # GET /kudos/new
   def new
@@ -18,8 +17,7 @@ class KudosController < ApplicationController
   end
 
   # GET /kudos/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /kudos
   def create
@@ -33,11 +31,7 @@ class KudosController < ApplicationController
   end
 
   def correct_employee
-   if 
-    @kudo.giver == current_employee
-   else
-    redirect_to kudos_path, notice: "Not authorized to acces this Kudo."
-   end
+    redirect_to kudos_path, notice: 'Not authorized to access this Kudo.' unless @kudo.giver == current_employee
   end
 
   # PATCH/PUT /kudos/1
@@ -56,13 +50,14 @@ class KudosController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_kudo
-      @kudo = Kudo.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def kudo_params
-      params.require(:kudo).permit(:title, :content, :giver_id, :receiver_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_kudo
+    @kudo = Kudo.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def kudo_params
+    params.require(:kudo).permit(:title, :content, :giver_id, :receiver_id)
+  end
 end
