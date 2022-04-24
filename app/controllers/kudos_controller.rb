@@ -31,17 +31,10 @@ class KudosController < ApplicationController
     end
   end
 
-<<<<<<< Updated upstream
-=======
   def correct_employee
-    if
-    redirect_to kudos_path, notice: 'Not authorized to access this Kudo.' 
-    else 
-      unless @kudo.giver == current_employee
-      end
+    redirect_to kudos_path, notice: 'Not authorized to access this Kudo.' unless @kudo.giver == current_employee
   end
 
->>>>>>> Stashed changes
   # PATCH/PUT /kudos/1
   def update
     if @kudo.update(kudo_params)
