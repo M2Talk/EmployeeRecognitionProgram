@@ -7,9 +7,16 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 5.times do |n|
-  Employee.create(email: "employee#{n}@test.com", password: "password")
+  Employee.create(
+                  email: "employee#{n}@test.com", password: "password"
+                )
 end
 
 rand(1..10).times do |n|
-  Kudo.create!(title: "Random title no #{n}", content: "Random content no #{n}", giver_id: rand(1..5), receiver_id: rand(1..5))
+  Kudo.create!(
+              title: "Random title no #{n}", 
+              content: "Random content no #{n}", 
+              giver_id: rand(1..5), 
+              receiver_id: rand(1..5)
+            )
 end
