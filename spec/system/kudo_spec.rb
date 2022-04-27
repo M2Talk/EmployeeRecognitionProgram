@@ -2,23 +2,20 @@ require 'rails_helper'
 
 RSpec.describe 'Kudo CRUD test', type: :system do
   let!(:employee) { create(:employee) }
-  #let(:kudo) { build(:kudo) }
- 
 
-
-  context 'to CRUD kudo' do
+  context 'when want to CRUD kudo' do
     before do
       sign_in(employee)
-      visit (root_path)
+      visit(root_path)
     end
-   
+
     it 'CRUD kudo' do
       # create kudo
       click_link 'New Kudo'
       expect(page).to have_content 'New Kudo'
-     
-      fill_in "kudo_title", with: 'Test title'
-      fill_in "kudo_content", with: 'Test content'
+
+      fill_in 'kudo_title', with: 'Test title'
+      fill_in 'kudo_content', with: 'Test content'
 
       click_button 'Create Kudo'
 
