@@ -22,6 +22,7 @@ class KudosController < ApplicationController
   # POST /kudos
   def create
     @kudo = Kudo.new(kudo_params)
+    @kudo.giver = current_employee
 
     if @kudo.save
       redirect_to kudos_path, notice: 'Kudo was successfully created.'
