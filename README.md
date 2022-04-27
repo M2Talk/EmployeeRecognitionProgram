@@ -1,11 +1,8 @@
-# Employee Recognition Platfrom
+# Employee Recognition Platform
 
-### Setup
-```
-bin/setup
-```
+### Website
+Please visit my project [Employee Recognition Platform](https://talkowski.herokuapp.com)
 
-### How to start the app
-```
-rails server
-```
+### To login use credentials
+- l: <employee0@test.com>
+- p: `password`
