@@ -4,7 +4,6 @@ RSpec.describe 'Kudo CRUD test', type: :system do
   let!(:employee) { create(:employee) }
   let!(:employee1) { create(:employee) }
 
-
   context 'when want to CRUD kudo' do
     before do
       sign_in(employee)
@@ -19,7 +18,7 @@ RSpec.describe 'Kudo CRUD test', type: :system do
       fill_in 'kudo_title', with: 'Test title'
       fill_in 'kudo_content', with: 'Test content'
       select employee1.email, from: 'kudo_receiver_id'
-      
+
       click_button 'Create Kudo'
       expect(page).to have_content 'Kudo was successfully created.'
 
