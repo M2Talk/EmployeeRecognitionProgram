@@ -17,6 +17,10 @@ gem 'sass-rails', '>= 6'
 gem 'webpacker', '~> 5.0'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'bootsnap', '>= 1.4.4', require: false
+gem 'net-smtp', '~> 0.3.1', require: false
+gem 'net-pop', '~> 0.1.1'
+gem 'net-imap', '~> 0.2.3'
+gem 'launchy', '~> 2.4', '>= 2.4.3'
 gem 'devise', '~> 4.8', '>= 4.8.1'
 
 group :development, :test do
@@ -27,6 +31,12 @@ group :development, :test do
   gem 'rubocop-rspec', '2.8.0'
   # Tests
   gem 'rspec-rails', '~> 5.0.0'
+  gem "factory_bot_rails"
+end
+
+group :test do
+  gem 'capybara', '~> 3.36'
+
 end
 
 group :development do
