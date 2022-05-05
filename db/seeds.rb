@@ -20,3 +20,5 @@ rand(1..10).times do |n|
               receiver_id: rand(1..5)
             )
 end
+
+Admin.where(email: "admin@test.com").first_or_create!(password: "password")
