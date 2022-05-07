@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   namespace :admins do
     root to: 'pages#dashboard'
     resources :kudos, only: %i[index destroy]
+    resources :employees
+
   end
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
