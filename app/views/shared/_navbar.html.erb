@@ -1,10 +1,12 @@
 <ul class="nav">
 <br/>
   <li><%=link_to 'VISUALITY', root_path, class: "nav-link"%> </li>
+
   <% if !employee_signed_in? %>
     <li><%=link_to 'Sign in', new_employee_session_path, class: "nav-link"%> </li>
     <li><%=link_to 'Sign up', new_employee_registration_path, class: "nav-link"%> </li>
   <% else %>
+    <span class="nav-link" >Available Kudos: <%= current_employee.number_of_available_kudos %></span>
     <li><%=link_to 'Sign out', destroy_employee_session_path, method: :delete, class: "nav-link"%> </li>
   <% end %>
 </ul>
