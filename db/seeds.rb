@@ -21,4 +21,3 @@ rand(1..10).times do |n|
             )
 end
 
-Admin.where(email: "admin@test.com").first_or_create!(password: "password")
