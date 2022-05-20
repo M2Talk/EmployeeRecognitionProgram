@@ -1,0 +1,10 @@
+<ul class="nav">
+<br/>
+  <li><%=link_to 'ADMIN  | VISUALITY', admin_root_path, class: "nav-link"%> </li>
+  <% if !admin_user_signed_in? %>
+    <li><%=link_to 'Sign in', new_admin_user_session_path, class: "nav-link"%> </li>
+  <% else %>
+    <li><%=link_to 'Sign out', destroy_admin_user_session_path, method: :delete, class: "nav-link"%> </li>
+  <% end %>
+</ul>
+<hr />
