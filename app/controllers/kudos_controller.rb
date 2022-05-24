@@ -14,8 +14,8 @@ class KudosController < ApplicationController
   # GET /kudos/new
   def new
     if current_employee.number_of_available_kudos.zero?
-      redirect_to kudos_path, notice: "Not enough available kudos to create new one!"
-    else     
+      redirect_to kudos_path, notice: 'Not enough available kudos to create new one!'
+    else
       @kudo = Kudo.new
     end
   end
@@ -26,18 +26,19 @@ class KudosController < ApplicationController
   # POST /kudos
   def create
     if current_employee.number_of_available_kudos.zero?
-      redirect_to kudos_path, notice: "Not enough available kudos to create new one!"
+      redirect_to kudos_path, notice: 'Not enough available kudos to create new one!'
     else
       @kudo = Kudo.new(kudo_params)
       @kudo.giver = current_employee
 
-        if @kudo.save
-          current_employee.update_attribute(:number_of_available_kudos, (current_employee.number_of_available_kudos - 1))
-          redirect_to kudos_path, notice: 'Kudo was successfully created.'
-        else
-          render :new
-        end
+      if @kudo.save
+        current_employee.update_attribute(:number_of_available_kudos,
+                                          (current_employee.number_of_available_kudos - 1))
+        redirect_to kudos_path, notice: 'Kudo was successfully created.'
+      else
+        render :new
       end
+    end
   end
 
   def correct_employee
