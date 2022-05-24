@@ -3,7 +3,6 @@ class KudosController < ApplicationController
   before_action :authenticate_employee!
   before_action :correct_employee, only: %i[edit update destroy]
 
-  #included part of the code from  the next tasks
   # GET /kudo
   def index
     @kudos = Kudo.all
@@ -14,11 +13,7 @@ class KudosController < ApplicationController
 
   # GET /kudos/new
   def new
-    if current_employee.number_of_available_kudos.zero?
-      redirect_to kudos_path, notice: 'Not enough available kudos to create new one!'
-    else
-      @kudo = Kudo.new
-    end
+    @kudo = Kudo.new
   end
 
   # GET /kudos/1/edit
@@ -26,19 +21,13 @@ class KudosController < ApplicationController
 
   # POST /kudos
   def create
-    if current_employee.number_of_available_kudos.zero?
-      redirect_to kudos_path, notice: 'Not enough available kudos to create new one!'
-    else
-      @kudo = Kudo.new(kudo_params)
-      @kudo.giver = current_employee
+    @kudo = Kudo.new(kudo_params)
+    @kudo.giver = current_employee
 
-      if @kudo.save
-        current_employee.update_attribute(:number_of_available_kudos,
-                                          (current_employee.number_of_available_kudos - 1))
-        redirect_to kudos_path, notice: 'Kudo was successfully created.'
-      else
-        render :new
-      end
+    if @kudo.save
+      redirect_to kudos_path, notice: 'Kudo was successfully created.'
+    else
+      render :new
     end
   end
 
@@ -58,7 +47,6 @@ class KudosController < ApplicationController
   # DELETE /kudos/1
   def destroy
     @kudo.destroy
-    current_employee.update_attribute(:number_of_available_kudos, (current_employee.number_of_available_kudos + 1))
     redirect_to kudos_url, notice: 'Kudo was successfully destroyed.'
   end
 
