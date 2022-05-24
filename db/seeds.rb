@@ -21,3 +21,5 @@ rand(1..10).times do |n|
             )
 end
 
+puts "Creating admin account"
+AdminUser.where(email: "admin@example.com").first_or_create!(password: 'password') 
