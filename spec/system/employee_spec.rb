@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Employee account test', type: :system do
-  let!(:employee) { create(:employee) }
+  let!(:employee) { build(:employee) }
 
   it 'Setup employee account' do
     visit root_path
