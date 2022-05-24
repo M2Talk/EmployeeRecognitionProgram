@@ -3,7 +3,8 @@ class KudosController < ApplicationController
   before_action :authenticate_employee!
   before_action :correct_employee, only: %i[edit update destroy]
 
-  # GET /kudos
+  #included part of the code from  the next tasks
+  # GET /kudo
   def index
     @kudos = Kudo.all
   end
